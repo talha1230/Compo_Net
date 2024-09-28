@@ -1,0 +1,126 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js
+.next/
+out/
+build/
+
+# Tailwind CSS
+tailwind.config.js
+postcss.config.js
+
+# Parcel
+.parcel-cache/
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# dotenv environment variables file
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Miscellaneous
+*.lock
+*.mdb
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.pid
+*.seed
+*.seed.ts
+*.pid.lock
+*.log
+*.log.*
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.test
+.env.production
+
+# Parcel cache
+.parcel-cache/
+
+# Next.js build output
+.next/
+out/
+
+# Build directories
+build/
+dist/
+
+# Static files
+public/static/
+
+# Temporary files
+tmp/
+temp/
+
+# Ignore all files in the root directory except for the specified ones
+/*
+!.gitignore
+!package.json
+!tsconfig.json
+!next-env.d.ts
+!postcss.config.js
+!tailwind.config.js
+!pages/
+!app/
+!src/
+!public/
+!styles/
