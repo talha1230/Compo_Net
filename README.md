@@ -2,7 +2,11 @@
 # Compo_Net
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://github.com/talha1230/Compo_Net/actions/workflows/build.yml/badge.svg)](https://github.com/talha1230/Compo_Net/actions)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/talha1230/Compo_Net)
+[![Forks](https://img.shields.io/github/forks/talha1230/Compo_Net?style=social)](https://github.com/talha1230/Compo_Net/fork)
+[![Node Version](https://img.shields.io/badge/node-14+-brightgreen)](https://nodejs.org/)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/talha1230/Compo_Net)
+
 
 Compo_Net is an open-source project that showcases various UI components. Inspired by [Aceternity](https://ui.aceternity.com/) and [Uiverse](https://uiverse.io/), this project aims to provide a platform where developers can create, share, and explore UI components.
 
