@@ -124,3 +124,6 @@ temp/
 !src/
 !public/
 !styles/
+
+# Commented out to allow Markdown files
+# md
