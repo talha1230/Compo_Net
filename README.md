@@ -114,16 +114,3 @@ Please make sure to update tests as appropriate.
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-### Explanation
-
-- **Title and Badges**: The title of the project and badges for license and build status.
-- **Table of Contents**: A quick navigation guide.
-- **Features**: Highlights the main features of the project.
-- **Getting Started**: Instructions on how to set up the project locally.
-  - **Prerequisites**: Lists the required software.
-  - **Installation**: Steps to clone the repository and install dependencies.
-  - **Running the Project**: Instructions to start the development server.
-- **Project Structure**: Provides an overview of the project's directory structure.
-- **Contributing**: Guidelines for contributing to the project.
-- **License**: Information about the project's license.
