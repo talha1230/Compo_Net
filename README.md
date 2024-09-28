@@ -1,5 +1,5 @@
 
-# Compo_Net
+# Compo_Net 🚀
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/talha1230/Compo_Net)
@@ -7,21 +7,21 @@
 [![Node Version](https://img.shields.io/badge/node-14+-brightgreen)](https://nodejs.org/)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/talha1230/Compo_Net)
 
-
 Compo_Net is an open-source project that showcases various UI components. Inspired by [Aceternity](https://ui.aceternity.com/) and [Uiverse](https://uiverse.io/), this project aims to provide a platform where developers can create, share, and explore UI components.
 
-## Table of Contents
+## Table of Contents 📚
 
 - [Features](#features)
 - [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Running the Project](#running-the-project)
+   - [Prerequisites](#prerequisites)
+   - [Installation](#installation)
+   - [Running the Project](#running-the-project)
+   - [Steps to Deploy on Vercel](#steps-to-deploy-on-vercel)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Features
+## Features ✨
 
 - Showcase various UI components.
 - Easy to add new components.
@@ -29,33 +29,33 @@ Compo_Net is an open-source project that showcases various UI components. Inspir
 - Built with Next.js and Tailwind CSS.
 - Open-source and community-driven.
 
-## Getting Started
+## Getting Started 🚀
 
-### Prerequisites
+### Prerequisites 📋
 
 Make sure you have the following installed on your machine:
 
 - [Node.js](https://nodejs.org/) (version 14 or higher)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
-### Installation
+### Installation 💻
 
 1. Clone the repository:
 
-   ```sh
-   git clone https://github.com/talha1230/Compo_Net.git
-   cd Compo_Net
-   ```
+    ```sh
+    git clone https://github.com/talha1230/Compo_Net.git
+    cd Compo_Net
+    ```
 
 2. Install dependencies:
 
-   ```sh
-   npm install
-   # or
-   yarn install
-   ```
+    ```sh
+    npm install
+    # or
+    yarn install
+    ```
 
-### Running the Project
+### Running the Project 🏃‍♂️
 
 To start the development server, run:
 
@@ -67,12 +67,27 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Project Structure
+### Steps to Deploy on Vercel 🌐
+
+For a professional deployment with the resources you have, I recommend using Vercel. It is optimized for Next.js, easy to set up, and offers a generous free tier that should be sufficient for your project.
+
+1. **Sign Up**: Go to [Vercel](https://vercel.com/) and sign up using your GitHub account.
+2. **Import Project**: Click on "New Project" and import your GitHub repository.
+3. **Configure Build Settings**:
+    - **Build Command**: `npm run build`
+    - **Output Directory**: `.next`
+4. **Deploy**: Click "Deploy" and wait for the deployment to complete.
+
+### Additional Resources 📖
+
+- [Azure Static Web Apps Documentation](https://docs.microsoft.com/en-us/azure/static-web-apps/)
+- [Azure App Service Documentation](https://docs.microsoft.com/en-us/azure/app-service/)
+- [Vercel Documentation](https://vercel.com/docs)
+
+## Project Structure 🗂️
 
 ```plaintext
 Compo_Net/
-├── .next/
-├── .parcel-cache/
 ├── app/
 │   ├── components/
 │   │   ├── layout/
@@ -81,24 +96,37 @@ Compo_Net/
 │   │   │   └── Footer.tsx
 │   │   ├── sections/
 │   │   │   ├── Hero.tsx
-│   │   │   ├── Skills.tsx
 │   │   │   └── Showcase.tsx
 │   └── globals.css
+├── build-cache/
+├── next-env.d.ts
+├── package.json
 ├── pages/
 │   ├── api/
-│   └── index.tsx
+│   │   ├── _app.tsx
+│   │   ├── _document.tsx
+│   │   └── index.tsx
+├── .parcel-cache/
 ├── public/
+│   ├── favicon.ico
+│   ├── images/
+│   │   └── logo.png
+│   └── robots.txt
+├── README.md
 ├── src/
-├── styles/
-│   └── globals.css
-├── .gitignore
-├── package.json
-├── postcss.config.js
+│   ├── lib/
+│   │   └── utils.ts
+│   ├── hooks/
+│   │   └── useCustomHook.ts
+│   └── types/
+│       └── index.d.ts
 ├── tailwind.config.js
-└── tsconfig.json
+├── tsconfig.json
+└── styles/
+    └── globals.css
 ```
 
-## Contributing
+## Contributing 🤝
 
 We welcome contributions from the community! To contribute, follow these steps:
 
@@ -111,6 +139,6 @@ We welcome contributions from the community! To contribute, follow these steps:
 
 Please make sure to update tests as appropriate.
 
-## License
+## License 📄
 
 This project is licensed under the MIT License - see the LICENSE file for details.
