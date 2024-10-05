@@ -4,6 +4,9 @@
 /* app/components/layout/NavBar.css */
 .navbar {
     background-color: rgba(112, 109, 109, 0.301); /* Set the background color to grey */
+    position: sticky; /* Make the navbar sticky */
+    top: 0; /* Stick the navbar to the top */
+    z-index: 1000; /* Ensure the navbar is above other elements */
   }
   
   .navbar .dark-mode-toggle {
