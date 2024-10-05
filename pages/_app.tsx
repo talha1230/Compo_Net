@@ -1,12 +1,28 @@
-import { ThemeProvider } from '../src/context/ThemeContext';
+import { ThemeProvider, useTheme } from '../src/context/ThemeContext';
 import '../app/globals.css';
-import React from 'react';
+import React, { useEffect, ReactNode } from 'react';
+
+interface ThemeWrapperProps {
+  children: ReactNode;
+}
+
+const ThemeWrapper: React.FC<ThemeWrapperProps> = ({ children }) => {
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
+  return <>{children}</>;
+};
 
 function MyApp({ Component, pageProps }) {
   return (
-	<ThemeProvider>
-	  <Component {...pageProps} />
-	</ThemeProvider>
+    <ThemeProvider>
+      <ThemeWrapper>
+        <Component {...pageProps} />
+      </ThemeWrapper>
+    </ThemeProvider>
   );
 }
 
