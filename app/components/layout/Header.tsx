@@ -1,117 +1,166 @@
-import React from 'react';
-import { useTheme } from 'src/context/ThemeContext';
-import styled from 'styled-components';
+// app/components/layout/Header.tsx
+"use client";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import DarkModeToggle from "../common/DarkModeToggle"; // Adjust the import path as necessary
 
-	const Switch = () => {
-		const { theme, toggleTheme } = useTheme();
+const transition = {
+  type: "spring",
+  mass: 0.5,
+  damping: 11.5,
+  stiffness: 100,
+  restDelta: 0.001,
+  restSpeed: 0.001,
+};
 
-		return (
-			<StyledWrapper>
-				<label className="ui-switch">
-					<input type="checkbox" onChange={toggleTheme} checked={theme === 'dark'} />
-					<div className="slider">
-						<div className="circle" />
-					</div>
-				</label>
-			</StyledWrapper>
-		);
-	};
+export const MenuItem = ({
+  setActive,
+  active,
+  item,
+  children,
+}: {
+  setActive: (item: string) => void;
+  active: string | null;
+  item: string;
+  children?: React.ReactNode;
+}) => {
+  return (
+    <div onMouseEnter={() => setActive(item)} className="relative ">
+      <motion.p
+        transition={{ duration: 0.3 }}
+        className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
+      >
+        {item}
+      </motion.p>
+      {active !== null && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={transition}
+        >
+          {active === item && (
+            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
+              <motion.div
+                transition={transition}
+                layoutId="active" // layoutId ensures smooth animation
+                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+              >
+                <motion.div
+                  layout // layout ensures smooth animation
+                  className="w-max h-full p-4"
+                >
+                  {children}
+                </motion.div>
+              </motion.div>
+            </div>
+          )}
+        </motion.div>
+      )}
+    </div>
+  );
+};
 
-	const StyledWrapper = styled.div`
-		/* switch settings 👇 */
+export const Menu = ({
+  setActive,
+  children,
+}: {
+  setActive: (item: string | null) => void;
+  children: React.ReactNode;
+}) => {
+  return (
+    <nav
+      onMouseLeave={() => setActive(null)} // resets the state
+      className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6 "
+    >
+      {children}
+    </nav>
+  );
+};
 
-		.ui-switch {
-			/* switch */
-			--switch-bg: rgb(135, 150, 165);
-			--switch-width: 48px;
-			--switch-height: 20px;
-			/* circle */
-			--circle-diameter: 32px;
-			--circle-bg: rgb(0, 56, 146);
-			--circle-inset: calc((var(--circle-diameter) - var(--switch-height)) / 2);
-		}
+export const ProductItem = ({
+  title,
+  description,
+  href,
+  src,
+}: {
+  title: string;
+  description: string;
+  href: string;
+  src: string;
+}) => {
+  return (
+    <Link href={href} className="flex space-x-2">
+      <Image
+        src={src}
+        width={140}
+        height={70}
+        alt={title}
+        className="flex-shrink-0 rounded-md shadow-2xl"
+      />
+      <div>
+        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
+          {title}
+        </h4>
+        <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">
+          {description}
+        </p>
+      </div>
+    </Link>
+  );
+};
 
-		.ui-switch input {
-			display: none;
-		}
+export const HoveredLink = ({ children, ...rest }: any) => {
+  return (
+    <Link
+      {...rest}
+      className="text-neutral-700 dark:text-neutral-200 hover:text-black "
+    >
+      {children}
+    </Link>
+  );
+};
 
-		.slider {
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			appearance: none;
-			width: var(--switch-width);
-			height: var(--switch-height);
-			background: var(--switch-bg);
-			border-radius: 999px;
-			position: relative;
-			cursor: pointer;
-		}
+const Header: React.FC = () => {
+  const [active, setActive] = useState<string | null>(null);
 
-		.slider .circle {
-			top: calc(var(--circle-inset) * -1);
-			left: 0;
-			width: var(--circle-diameter);
-			height: var(--circle-diameter);
-			position: absolute;
-			background: var(--circle-bg);
-			border-radius: inherit;
-			background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjAiIHdpZHRoPSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiNmZmYiCiAgICAgICAgZD0iTTkuMzA1IDEuNjY3VjMuNzVoMS4zODlWMS42NjdoLTEuMzl6bS00LjcwNyAxLjk1bC0uOTgyLjk4Mkw1LjA5IDYuMDcybC45ODItLjk4Mi0xLjQ3My0xLjQ3M3ptMTAuODAyIDBMMTMuOTI3IDUuMDlsLjk4Mi45ODIgMS40NzMtMS40NzMtLjk4Mi0uOTgyek0xMCA1LjEzOWE0Ljg3MiA0Ljg3MiAwIDAwLTQuODYyIDQuODZBNC44NzIgNC44NzIgMCAwMDEwIDE0Ljg2MiA0Ljg3MiA0Ljg3MiAwIDAwMTQuODYgMTAgNC44NzIgNC44NzIgMCAwMDEwIDUuMTM5em0wIDEuMzg5QTMuNDYyIDMuNDYyIDAgMDExMy40NzEgMTBhMy40NjIgMy40NjIgMCAwMS0zLjQ3MyAzLjQ3MkEzLjQ2MiAzLjQ2MiAwIDAxNi41MjcgMTAgMy40NjIgMy40NjIgMCAwMTEwIDYuNTI4ek0xLjY2NSA5LjMwNXYxLjM5aDIuMDgzdi0xLjM5SDEuNjY2em0xNC41ODMgMHYxLjM5aDIuMDg0di0xLjM5aC0yLjA4NHpNNS4wOSAxMy45MjhMMy42MTYgMTUuNGwuOTgyLjk4MiAxLjQ3My0xLjQ3My0uOTgyLS45ODJ6bTkuODIgMGwtLjk4Mi45ODIgMS40NzMgMS40NzMuOTgyLS45ODItMS40NzMtMS40NzN6TTkuMzA1IDE2LjI1djIuMDgzaDEuMzg5VjE2LjI1aC0xLjM5eiIgLz4KPC9zdmc+");
-			background-repeat: no-repeat;
-			background-position: center center;
-			-webkit-transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-			-o-transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-			transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-			display: -webkit-box;
-			display: -ms-flexbox;
-			display: flex;
-			-webkit-box-align: center;
-			-ms-flex-align: center;
-			align-items: center;
-			-webkit-box-pack: center;
-			-ms-flex-pack: center;
-			justify-content: center;
-			box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
-			;
-		}
+  return (
+    <header className="navbar">
+      <div className="menu">
+        <Menu setActive={setActive}>
+          <MenuItem setActive={setActive} active={active} item="Home">
+            <HoveredLink href="/" title="Go to Home Page">Home</HoveredLink>
+          </MenuItem>
+          <MenuItem setActive={setActive} active={active} item="Products">
+            <ProductItem
+              title="Product 1"
+              description="Description of Product 1"
+              href="/product-1"
+              src="/images/bg.jpg"
+            />
+            <ProductItem
+              title="Product 2"
+              description="Description of Product 2"
+              href="/product-2"
+              src="/images/bg.jpg"
+            />
+          </MenuItem>
+          <MenuItem setActive={setActive} active={active} item="About">
+            <HoveredLink href="/about">About</HoveredLink>
+          </MenuItem>
+          <MenuItem setActive={setActive} active={active} item="Contact">
+            <HoveredLink href="/contact">Contact</HoveredLink>
+          </MenuItem>
+		  <div className="dark-mode-toggle pr-9 ml-auto">
+        <DarkModeToggle className="header-toggle" />
+      </div>
+        </Menu>
+		
+		
+      </div>
+    </header>
+  );
+};
 
-		.slider .circle::before {
-			content: "";
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			background: rgba(255, 255, 255, 0.75);
-			border-radius: inherit;
-			-webkit-transition: all 500ms;
-			-o-transition: all 500ms;
-			transition: all 500ms;
-			opacity: 0;
-		}
-
-		/* actions */
-
-		.ui-switch input:checked+.slider .circle {
-			left: calc(100% - var(--circle-diameter));
-			background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjAiIHdpZHRoPSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiNmZmYiCiAgICAgICAgZD0iTTQuMiAyLjVsLS43IDEuOC0xLjguNyAxLjguNy43IDEuOC42LTEuOEw2LjcgNWwtMS45LS43LS42LTEuOHptMTUgOC4zYTYuNyA2LjcgMCAxMS02LjYtNi42IDUuOCA1LjggMCAwMDYuNiA2LjZ6IiAvPgo8L3N2Zz4=");
-		}
-
-		.ui-switch input:active+.slider .circle::before {
-			-webkit-transition: 0s;
-			-o-transition: 0s;
-			transition: 0s;
-			opacity: 1;
-			width: 0;
-			height: 0;
-		}
-	`;
-
-	const Header: React.FC = () => {
-		return (
-			<header className="fixed top-0 left-0 w-full bg-gray-800 text-white p-4 flex justify-between items-center z-50">
-				<h1 className="text-2xl">Supposed to be Navbar</h1>
-				<Switch />
-			</header>
-		);
-	};
-
-	export default Header;
- 
+export default Header;
